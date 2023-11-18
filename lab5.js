@@ -19,12 +19,23 @@ const todos = [
 const Lab5 = (app) => {
   app.get("/a5/todos/create", (req, res) => {
     const newTodo = {
-     ...req.body,
-     id: new Date().getTime(),
+      id: new Date().getTime(),
+      title: "New Task",
+      completed: false,
     };
     todos.push(newTodo);
-    res.json(newTodo);
-   });
+    res.json(todos);
+  });
+
+   app.post("/a5/todos", (req, res) => {
+    const newTodo = {
+      ...req.body,
+      id: new Date().getTime()
+    }
+    todos.push(newTodo)
+    res.json(todos)
+  })
+   
   app.get("/a5/welcome", (req, res) => {
     res.send("Welcome to Assignment 5");
   });
